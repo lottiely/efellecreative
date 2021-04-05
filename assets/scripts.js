@@ -3,6 +3,7 @@ $(document).ready(init());
 function init() {
   var limit = 12;
   getDogs(limit);
+  getBanner();
 }
 
 function getDogs(limit) {
@@ -101,6 +102,27 @@ function getName() {
   ];
 
   return names[Math.floor(Math.random() * names.length)];
+}
+
+function getBanner(){
+  $.ajax({
+    url: 'https://dog.ceo/api/breeds/image/random',
+    success: function(result) {
+      if (result.status == 'success') {
+        var image = result.message;
+        setBanner(image);
+      }
+    },
+    error: function(result){
+      console.log("Unable to retrieve image: " + result);
+      var image = 'assets/banner.jpeg';
+      setBanner(image);
+    }
+  });
+}
+
+function setBanner(image) {
+  document.getElementById('banner-image').src = image;
 }
 
 function hideProfile(element){
