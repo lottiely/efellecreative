@@ -102,3 +102,13 @@ function getName() {
 
   return names[Math.floor(Math.random() * names.length)];
 }
+
+function hideProfile(element){
+  // The element passed into hideProfile is the button that is clicked.
+
+  // The button is a child of the card div, which is the child of the profile div.
+  let card = element.parentElement;
+  let profile = card.parentElement;
+
+  profile.style.display = 'none';
+}
